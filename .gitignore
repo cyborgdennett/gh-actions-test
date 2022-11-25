@@ -6,6 +6,7 @@ typechain
 typechain-types
 yarn-error.log
 yarn.lock
+gasReport.txt
 
 
 #Hardhat files
