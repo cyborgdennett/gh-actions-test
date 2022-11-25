@@ -35,12 +35,12 @@ jobs:
             - name: check download by ls
               run: ls
             - name: Check file existence
-                id: check_old_gasReport_exists
+                id: check_gasreport
                 uses: andstor/file-existence-action@v2
                 with:
                   files: "gasReport.txt"
             - name: Rename to oldGasReport
-              if: steps.check_old_gasReport_exists.outputs.files_exists == 'true'
+              if: steps.check_gasreport.outputs.files_exists == 'true'
               run: mv gasReport.txt oldGasReport.txt
             - name: Run tests
               run: yarn test
@@ -50,10 +50,10 @@ jobs:
                   name: gas-report
                   path: gasReport.txt
             - name: Run difference calculator
-              if: steps.check_old_gasReport_exists.outputs.files_exists == 'true'
+              if: steps.check_gasreport.outputs.files_exists == 'true'
               run: yarn gas-diff
             - name: Archive gas-report difference results
-              if: steps.check_old_gasReport_exists.outputs.files_exists == 'true'
+              if: steps.check_gasreport.outputs.files_exists == 'true'
               uses: actions/upload-artifact@v3
               with:
                 name: gas-report-difference
