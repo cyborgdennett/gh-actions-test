@@ -23,12 +23,12 @@ jobs:
                   echo "Go-ethereum installed!"
             - name: Install dependencies
               run: yarn install
-            - name: Download a previous gas-report
-              uses: actions/download-artifact@v3.0.1
-              with:
-                name: gas-report
-            - name: Rename to oldGasReport
-              run: mv gasReport.txt oldGasReport.txt
+            # - name: Download a previous gas-report
+            #   uses: actions/download-artifact@v3.0.1
+            #   with:
+            #     name: gas-report
+            # - name: Rename to oldGasReport
+            #   run: mv gasReport.txt oldGasReport.txt
             - name: Run tests
               run: yarn test
             - name: Archive gas-report results
@@ -36,10 +36,10 @@ jobs:
               with:
                   name: gas-report
                   path: gasReport.txt
-            - name: Run difference calculator
-              run: yarn gas-diff
-            - name: Archive gas-report difference results
-              uses: actions/upload-artifact@v3
-              with:
-                name: gas-report-difference
-                path: gasReportDiff.txt
+            # - name: Run difference calculator
+            #   run: yarn gas-diff
+            # - name: Archive gas-report difference results
+            #   uses: actions/upload-artifact@v3
+            #   with:
+            #     name: gas-report-difference
+            #     path: gasReportDiff.txt
