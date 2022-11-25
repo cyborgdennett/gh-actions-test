@@ -1,7 +1,53 @@
 {
-  "name": "hardhat-project",
-  "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
-    "hardhat": "^2.12.2"
-  }
+    "name": "distro-blockchain",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "npx tsc -b",
+        "test": "npx hardhat test",
+        "gas-diff": "ts-node scripts/gas-diff/calculateGasDiff.ts",
+        "cleanup": "npx hardhat run scripts/pre-test/testCleanup.ts",
+        "lint": "./node_modules/.bin/solhint contracts/**/*.sol; eslint --ext ts test/;",
+        "lint:fix": "prettier --write 'contracts/**/*.sol'; eslint --fix --ext ts test/; ",
+        "compile": "npx hardhat compile",
+        "compile:bin": "npx hardhat run scripts/deployment/genAbiBin.ts",
+        "deploy": "npx hardhat run scripts/deployment/deployContracts.ts --network private",
+        "post-deploy": "cd scripts/post-deployment && go run main.go",
+        "generate": "cd address-generator && go run main.go",
+        "clean": "npx hardhat clean",
+        "upgradeContracts": "npx hardhat --network private run scripts/deployment/upgradeContracts.ts"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@nomiclabs/hardhat-ethers": "^2.0.3",
+        "@nomiclabs/hardhat-waffle": "^2.0.1",
+        "@openzeppelin/hardhat-upgrades": "^1.12.0",
+        "@types/chai": "^4.2.22",
+        "@types/mocha": "^9.0.0",
+        "@typescript-eslint/eslint-plugin": "^5.5.0",
+        "@typescript-eslint/parser": "^5.5.0",
+        "chai": "^4.3.4",
+        "eslint": "^8.3.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "ethereum-waffle": "^3.4.0",
+        "ethers": "^5.5.2",
+        "hardhat": "^2.6.8",
+        "prettier": "^2.4.1",
+        "prettier-plugin-solidity": "^1.0.0-beta.19",
+        "solhint": "^3.3.6",
+        "solhint-plugin-prettier": "^0.0.5",
+        "ts-node": "^10.4.0",
+        "typescript": "^4.5.2"
+    },
+    "dependencies": {
+        "@openzeppelin/contracts": "^4.3.3",
+        "@openzeppelin/contracts-ethereum-package": "^3.0.0",
+        "@openzeppelin/contracts-upgradeable": "^4.4.0",
+        "@openzeppelin/upgrades": "^2.8.0",
+        "hardhat-gas-reporter": "^1.0.8"
+    }
 }
