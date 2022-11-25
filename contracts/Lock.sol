@@ -25,9 +25,10 @@ contract Lock {
         // console.log("Unlock time is %o and block timestamp is %o", unlockTime, block.timestamp);
 
         //waste some gas
-        // for(int i = 0; i < 1000; i++){
-            
-        // }
+        int j = 0;
+        for(int i = 0; i < 1000; i++){
+            j++;
+        }
 
         require(block.timestamp >= unlockTime, "You can't withdraw yet");
         require(msg.sender == owner, "You aren't the owner");
