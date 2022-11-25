@@ -41,27 +41,3 @@ jobs:
               with:
                 name: gas-report-difference
                 path: gasReportDiff.txt
-            - name: Generate addresses package into ./gethApi/go
-              run: yarn generate
-            - name: Format generated package
-              working-directory: ./gethApi/go/addresses
-              run: go fmt addresses.go
-            - name: Generate .go files into ./gethApi/go
-              run: yarn compile:bin
-            - name: Go mod init
-              working-directory: ./gethApi/go
-              run: go mod init github.com/distroenergy/gethApi-generated
-            - name: Go mod tidy
-              working-directory: ./gethApi/go
-              run: go mod tidy
-            - name: Go build
-              working-directory: ./gethApi/go
-              run: go build ./...
-            - name: Generate and deploy to abigen repo
-              uses: tagus/git-deploy@v0.3.2
-              with:
-                  changes: gethApi/go
-                  repository: git@github.com:distroenergy/gethApi-generated.git
-                  ssh_key: ${{ secrets.DISTRO_GITHUB_CHAIN_GEN_DEPLOY_KEY }}
-                  name: anthonyoliai
-                  email: anthony@distroenergy.com
