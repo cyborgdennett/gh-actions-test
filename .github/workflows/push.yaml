@@ -1,7 +1,7 @@
 name: Generates files from contract
 on:
     push:
-        branches: [main]
+        branches: [master]
 
 jobs:
     generate-files:
