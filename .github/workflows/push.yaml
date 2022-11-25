@@ -27,6 +27,8 @@ jobs:
               uses: actions/download-artifact@v3.0.1
               with:
                 name: gas-report
+            - name: Rename to oldGasReport
+              run: mv gasReport.txt oldGasReport.txt
             - name: Run tests
               run: yarn test
             - name: Archive gas-report results
