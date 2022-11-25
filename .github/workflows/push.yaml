@@ -35,10 +35,10 @@ jobs:
             - name: check download by ls
               run: ls
             - name: Check file existence
-                id: check_gasreport
-                uses: andstor/file-existence-action@v2
-                with:
-                  files: "gasReport.txt"
+              id: check_gasreport
+              uses: andstor/file-existence-action@v2
+              with:
+                files: "gasReport.txt"
             - name: Rename to oldGasReport
               if: steps.check_gasreport.outputs.files_exists == 'true'
               run: mv gasReport.txt oldGasReport.txt
