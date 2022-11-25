@@ -24,9 +24,15 @@ jobs:
             - name: Install dependencies
               run: yarn install
             - name: Download a previous gas-report
-              uses: actions/download-artifact@v3.0.1
+              id: download-artifact
+              uses: dawidd6/action-download-artifact@v2
               with:
+                github_token: ${{secrets.GITHUB_TOKEN}}
+                workflow_conclusion: success
+                branch: master
                 name: gas-report
+            - name: check download by ls
+              run: ls
             - name: Rename to oldGasReport
               run: mv gasReport.txt oldGasReport.txt
             - name: Run tests
